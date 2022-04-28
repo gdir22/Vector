@@ -10,7 +10,7 @@ namespace Vector
     /// A class for vectors in 2D. Only a excerpt of the actual implementation is shown here as a minimal example to 
     /// reproduce an issue with MS Test 2.2.4 to 2.2.10
     /// </summary>
-    public struct Vector2D
+    public class Vector2D
     {
         /// <summary>
         /// The U-component of the vector
