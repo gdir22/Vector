@@ -10,7 +10,7 @@ namespace Vector
     /// A class for vectors in 2D. Only a excerpt of the actual implementation is shown here as a minimal example to 
     /// reproduce an issue with MS Test 2.2.4 to 2.2.10
     /// </summary>
-    public class Vector2D
+    public struct Vector2D
     {
         /// <summary>
         /// The U-component of the vector
@@ -43,6 +43,29 @@ namespace Vector
         }
 
         /// <summary>
+        /// Multiplication of a Vector2D by a real number.
+        /// </summary>
+        /// <param name="v">The Vector2D</param>
+        /// <param name="d">The real number</param>
+        /// <returns>Returns the multiplication result.</returns>
+        public static Vector2D operator *(Vector2D v, double d)
+        {
+            return new Vector2D(v.U * d, v.V * d);
+        }
+
+        /// <summary>
+        /// Multiplication of a real number and a Vector2D.
+        /// </summary>
+        /// <param name="d">The real number</param>
+        /// <param name="v">The Vector2D</param>
+        /// <returns>Returns the multiplication result.</returns>
+        /// <exception cref="ArgumentNullException">Thrown if the vector is null.</exception>
+        public static Vector2D operator *(double d, Vector2D v)
+        {
+            return new Vector2D(d * v.U, d * v.V);
+        }
+
+        /// <summary>
         /// Scalar product of two Vector2D.
         /// </summary>
         /// <param name="v">The first Vector2D</param>
@@ -51,9 +74,6 @@ namespace Vector
         /// <exception cref="ArgumentNullException">Thrown if one or both vectors are null.</exception>
         public static double operator *(Vector2D v, Vector2D w)
         {
-            _ = v ?? throw new ArgumentNullException(nameof(v), "The first vector must not be null.");
-            _ = w ?? throw new ArgumentNullException(nameof(w), "The second vector must not be null.");
-
             return v.U * w.U + v.V * w.V;
         }
     }
